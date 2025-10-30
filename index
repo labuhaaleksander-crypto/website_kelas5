@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ruang Belajar Kelas 5</title>
+    <!-- Memuat Tailwind CSS untuk styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Konfigurasi Tailwind untuk menggunakan font Inter dan warna kustom -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'primary': '#4F46E5', // Biru Ungu
+                        'secondary': '#F97316', // Oranye Terang
+                        'accent': '#10B981', // Hijau
+                        'background-light': '#F3F4F6', // Abu-abu Sangat Terang
+                        'card-bg': '#FFFFFF', // Putih
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    },
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Gaya kustom untuk tampilan yang lebih menarik dan ceria */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #F3F4F6; /* background-light */
+        }
+        .nav-link:hover {
+            transform: scale(1.05);
+            transition: transform 0.2s;
+        }
+        .subject-card {
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.06);
+        }
+        .subject-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -4px rgba(0, 0, 0, 0.1);
+        }
+        .chapter-item {
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        .chapter-item:hover {
+            background-color: #E5E7EB; /* Hover ringan */
+        }
+        .material-content img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 8px;
+            margin: 1rem 0;
+        }
+
+        /* Responsive adjustments for mobile */
+        @media (max-width: 640px) {
+            .container {
+                padding: 0.5rem;
+            }
+            .subject-card {
+                padding: 1rem;
+            }
+            .nav-link {
+                font-size: 0.875rem; /* text-sm */
+            }
+        }
+    </style>
+    <!-- Icon sederhana menggunakan SVG untuk tampilan yang bersih -->
+    <svg style="display: none;">
+        <!-- ICON BUKU BARU (Lebih terdefinisi sebagai buku tertutup) -->
+        <symbol id="icon-book" viewBox="0 0 24 24"><path fill="currentColor" d="M18 2H6C4.9 2 4 2.9 4 4v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4C20 2.9 19.1 2 18 2zm0 2v16H6V4h12zm-4 4H8v2h6V8zm-6 4h8v2H8z"/></symbol>
+        <symbol id="icon-info" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"/></symbol>
+        <symbol id="icon-cog" viewBox="0 0 24 24"><path fill="currentColor" d="M19.43 12.98c.04-.32.07-.64.07-.98s-.03-.66-.07-.98l2.11-1.65c.24-.19.29-.53.12-.76l-2-3.46c-.16-.27-.48-.35-.76-.23l-2.41.96c-.57-.45-1.21-.81-1.92-1.07l-.39-2.52c-.05-.28-.3-.47-.58-.47h-4c-.29 0-.54.19-.58.47l-.39 2.52c-.71.26-1.35.62-1.92 1.07l-2.41-.96c-.28-.12-.6-.04-.76.23l-2 3.46c-.17.23-.12.57.12.76l2.11 1.65c-.04.32-.07.64-.07.98s.03.66.07.98l-2.11 1.65c-.24.19-.29.53-.12.76l2 3.46c.16.27.48.35.76.23l2.41-.96c.57.45 1.21.81 1.92 1.07l.39 2.52c.05.28.3.47.58.47h4c.29 0 .54-.19.58-.47l.39-2.52c.71-.26 1.35-.62 1.92-1.07l2.41.96c.28.12.6.04.76-.23l2-3.46c.17-.23.12-.57-.12-.76l-2.11-1.65zM12 15.5c-1.93 0-3.5-1.57-3.5-3.5s1.57-3.5 3.5-3.5 3.5 1.57 3.5 3.5-1.57 3.5-3.5 3.5z"/></symbol>
+        <symbol id="icon-help" viewBox="0 0 24 24"><path fill="currentColor" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 17h-2v-2h2v2zm2.07-7.75l-.9.92C13.43 12.57 13 13.5 13 14h-2v-.5c0-1.1.45-2.1 1.17-2.83l1.24-1.26c.37-.37.59-.87.59-1.41 0-1.1-.9-2-2-2s-2 .9-2 2H8c0-2.21 1.79-4 4-4s4 1.79 4 4c0 .88-.36 1.68-.93 2.25z"/></symbol>
+        <symbol id="icon-arrow-left" viewBox="0 0 24 24"><path fill="currentColor" d="M15.41 16.59L10.83 12l4.58-4.59L14 6l-6 6 6 6 1.41-1.41z"/></symbol>
+    </svg>
+</head>
+<body>
+
+<div id="app" class="min-h-screen flex flex-col">
+
+    <!-- Navbar/Header Ceria -->
+    <header class="bg-primary text-white shadow-lg sticky top-0 z-10">
+        <div class="container mx-auto px-4 py-4 flex flex-col sm:flex-row justify-between items-center">
+            <h1 class="text-3xl font-extrabold tracking-tight">
+                Ruang Belajar Kelas 5
+            </h1>
+            <nav id="main-nav" class="flex space-x-4 mt-3 sm:mt-0 text-lg font-medium">
+                <!-- Navigasi Utama: Dipanggil oleh JS -->
+            </nav>
+        </div>
+    </header>
+
+    <!-- Konten Utama Halaman -->
+    <main id="content" class="container mx-auto flex-grow p-4 sm:p-8 mt-4">
+        <!-- Konten akan dimuat di sini (Daftar Mapel / Detail Materi) -->
+        <h2 id="page-title" class="text-3xl sm:text-4xl font-bold text-gray-800 mb-6 border-b-4 border-secondary pb-2"></h2>
+        <div id="page-content">
+            <!-- Isi konten dinamis -->
+        </div>
+    </main>
+
+    <!-- Footer Sederhana -->
+    <footer class="bg-primary text-white text-center p-4 mt-8">
+        <p class="text-sm">&copy; 2025 Ruang Belajar Kelas 5 | Dibuat dengan Semangat Belajar</p>
+    </footer>
+
+</div>
+
+<script>
+    // Data Simulasi Mata Pelajaran, Bab, dan Materi
+    // ID Mata pelajaran, Bab, dan Materi telah diperbarui.
+    const courseData = [
+        {
+            id: 'ipas',
+            title: 'Ilmu Pengetahuan Alam dan Sosial (IPAS)',
+            icon: '🌍', // Diperbarui untuk mencerminkan aspek sosial
+            color: 'bg-green-500',
+            chapters: [
+                { id: 'ipas-1', title: 'Sistem Organ Gerak Manusia',
+                    materials: [
+                        { id: 'ipas-1-1', title: 'Rangka dan Fungsinya', type: 'Text',
+                            content: `
+                                <p class="text-lg">Rangka manusia berfungsi utama untuk memberi bentuk, menopang tubuh, dan melindungi organ vital. Bayangkan jika kamu tidak punya rangka! Kamu pasti seperti jeli. Rangka terbagi menjadi tiga bagian: rangka kepala, rangka badan, dan rangka anggota gerak.</p>
+                                <img src="https://placehold.co/600x300/10B981/ffffff?text=Ilustrasi+Sistem+Rangka" alt="Ilustrasi Sistem Rangka" onerror="this.onerror=null;this.src='https://placehold.co/600x300/10B981/ffffff?text=Ilustrasi+Sistem+Rangka';">
+                                <ul>
+                                    <li><strong>Tulang Keras:</strong> Terdapat di tulang kaki dan tangan.</li>
+                                    <li><strong>Tulang Rawan:</strong> Terdapat di hidung dan telinga, sifatnya lentur.</li>
+                                </ul>
+                                <p class="mt-4">Jangan lupa minum susu agar tulangmu kuat!</p>
+                            `
+                        },
+                        { id: 'ipas-1-2', title: 'Otot dan Cara Kerjanya', type: 'Video',
+                            content: `<p class="text-lg">Otot adalah alat gerak aktif, sedangkan tulang adalah alat gerak pasif. Otot bekerja dengan cara berkontraksi (memendek) dan berelaksasi (memanjang).</p>
+                                <div class="w-full h-64 bg-gray-200 flex items-center justify-center rounded-lg my-4 text-gray-600 font-bold">
+                                    [Simulasi Pemutar Video: Cara Kerja Otot - Sumber YouTube/Eksternal]
+                                </div>
+                                <p>Ingat! Otot dan tulang bekerja sama agar kamu bisa berlari dan bermain.</p>
+                            `
+                        }
+                    ]
+                },
+                { id: 'ipas-2', title: 'Perubahan Wujud Benda', materials: [
+                    { id: 'ipas-2-1', title: 'Mencair dan Membeku', type: 'Teks & Gambar', content: '<p>Mencair adalah perubahan wujud dari padat menjadi cair (contoh: es batu di luar kulkas). Membeku adalah kebalikannya, dari cair menjadi padat (contoh: air di dalam *freezer*). Keduanya dipengaruhi oleh suhu!</p>' }
+                ]}
+            ]
+        },
+        {
+            id: 'mtk',
+            title: 'Matematika (MTK)',
+            icon: '➕',
+            color: 'bg-red-500',
+            chapters: [
+                { id: 'mtk-1', title: 'Operasi Hitung Pecahan',
+                    materials: [
+                        { id: 'mtk-1-1', title: 'Penjumlahan Pecahan Beda Penyebut', type: 'Interaktif',
+                            content: `
+                                <p class="text-lg">Untuk menjumlahkan pecahan yang penyebutnya berbeda, kita harus menyamakan penyebutnya terlebih dahulu menggunakan KPK (Kelipatan Persekutuan Terkecil).</p>
+                                <div class="bg-yellow-100 border-l-4 border-yellow-500 p-4 my-4 rounded-lg">
+                                    <p class="font-bold text-yellow-700">Contoh Soal:</p>
+                                    <p class="text-xl mt-2">$$\\frac{1}{2} + \\frac{1}{3} = \\dots$$</p>
+                                    <p class="mt-2">KPK dari 2 dan 3 adalah 6. Jadi, ubah penyebutnya menjadi 6. Hasilnya adalah <span class="text-primary font-extrabold">5/6</span>.</p>
+                                </div>
+                                <p class="mt-4">Ayo latihan! Coba kerjakan soal di buku latihanmu.</p>
+                            `
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            id: 'indo',
+            title: 'Bahasa Indonesia',
+            icon: '📝',
+            color: 'bg-blue-500',
+            chapters: [
+                { id: 'indo-1', title: 'Ide Pokok Paragraf',
+                    materials: [
+                        { id: 'indo-1-1', title: 'Menemukan Kalimat Utama', type: 'Text',
+                            content: '<p class="text-lg">Ide pokok atau gagasan utama adalah inti dari sebuah paragraf. Ide pokok biasanya terdapat pada kalimat utama. Kalimat utama bisa berada di awal, di akhir, atau di awal dan akhir paragraf (campuran).</p>'
+                        }
+                    ]
+                }
+            ]
+        },
+        // --- Mata Pelajaran Baru: Pancasila ---
+        {
+            id: 'pancasila',
+            title: 'Pancasila',
+            icon: '⭐',
+            color: 'bg-yellow-600',
+            chapters: [
+                { id: 'pancasila-1', title: 'Makna Simbol Sila Pancasila',
+                    materials: [
+                        { id: 'pancasila-1-1', title: 'Sila ke-1: Ketuhanan Yang Maha Esa', type: 'Text & Gambar',
+                            content: `<p>Sila pertama Pancasila dilambangkan dengan <span class="text-yellow-700 font-bold">Bintang Emas</span>. Simbol ini mengandung makna cahaya rohani bagi setiap manusia. Nilai yang terkandung adalah percaya dan takwa kepada Tuhan sesuai agama masing-masing.</p>`
+                        }
+                    ]
+                },
+                { id: 'pancasila-2', title: 'Penerapan Nilai Pancasila',
+                    materials: [
+                        { id: 'pancasila-2-1', title: 'Contoh Sikap Sila ke-2', type: 'Cerita',
+                            content: `<p>Sila kedua dilambangkan dengan <span class="text-red-600 font-bold">Rantai</span>. Contoh penerapannya adalah sikap saling tolong-menolong dan tidak membeda-bedakan teman, karena kita semua adalah saudara sebangsa.</p>`
+                        }
+                    ]
+                }
+            ]
+        },
+        // --- Mata Pelajaran Baru: PJOK ---
+        {
+            id: 'pjok',
+            title: 'Pendidikan Jasmani, Olahraga, dan Kesehatan (PJOK)',
+            icon: '⚽',
+            color: 'bg-blue-600',
+            chapters: [
+                { id: 'pjok-1', title: 'Gerak Dasar Lokomotor',
+                    materials: [
+                        { id: 'pjok-1-1', title: 'Lari, Jalan, dan Kombinasinya', type: 'Video',
+                            content: `<p>Gerak lokomotor adalah gerakan berpindah tempat. Contohnya adalah lari dan jalan. Pastikan postur tubuhmu tegak saat berlari agar tidak cepat lelah.</p>
+                            <div class="w-full h-64 bg-gray-200 flex items-center justify-center rounded-lg my-4 text-gray-600 font-bold">
+                                [Simulasi Video: Teknik Lari yang Benar]
+                            </div>`
+                        }
+                    ]
+                }
+            ]
+        },
+        // --- Mata Pelajaran Baru: SBdP ---
+        {
+            id: 'sbdp',
+            title: 'Seni Budaya dan Prakarya (SBdP)',
+            icon: '🎨',
+            color: 'bg-purple-500',
+            chapters: [
+                { id: 'sbdp-1', title: 'Seni Rupa: Gambar Ilustrasi',
+                    materials: [
+                        { id: 'sbdp-1-1', title: 'Menggambar Ilustrasi Cerita', type: 'Aktivitas',
+                            content: `<p>Gambar ilustrasi adalah gambar yang memperjelas ide cerita atau narasi. Alat yang kamu butuhkan adalah pensil, penghapus, dan pensil warna. Ayo, coba buat ilustrasi dari cerita "Si Kancil dan Buaya"!</p>
+                            <img src="https://placehold.co/600x300/6D28D9/ffffff?text=Area+Menggambar+Ilustrasi" alt="Area Menggambar Ilustrasi" onerror="this.onerror=null;this.src='https://placehold.co/600x300/6D28D9/ffffff?text=Area+Menggambar+Ilustrasi';">`
+                        }
+                    ]
+                }
+            ]
+        }
+    ];
+
+    // Status Navigasi Aplikasi
+    let currentView = 'subjects'; // 'subjects', 'chapters', 'material'
+    let selectedSubject = null;
+    let selectedChapter = null;
+    let selectedMaterial = null;
+
+    // Elemen DOM
+    const contentDiv = document.getElementById('page-content');
+    const titleHeader = document.getElementById('page-title');
+    const mainNav = document.getElementById('main-nav');
+
+    // Fungsi utilitas untuk ikon SVG
+    const getIconSvg = (id, classes = "w-6 h-6 mr-2") => {
+        return `<svg class="${classes} inline-block"><use xlink:href="#${id}"></use></svg>`;
+    };
+
+    // --- Manajemen Tampilan/Routing ---
+
+    /**
+     * Memuat dan merender navigasi utama (header).
+     */
+    function renderNavigation() {
+        mainNav.innerHTML = `
+            <button onclick="navigateTo('subjects')" class="nav-link text-white hover:text-secondary p-2 rounded-lg transition duration-150 ease-in-out flex items-center">
+                ${getIconSvg('icon-book', 'w-5 h-5 mr-1')} Mata Pelajaran
+            </button>
+            <button onclick="navigateTo('about')" class="nav-link text-white hover:text-secondary p-2 rounded-lg transition duration-150 ease-in-out flex items-center">
+                ${getIconSvg('icon-info', 'w-5 h-5 mr-1')} Tentang
+            </button>
+            <button onclick="navigateTo('admin')" class="nav-link text-white hover:text-secondary p-2 rounded-lg transition duration-150 ease-in-out flex items-center">
+                ${getIconSvg('icon-cog', 'w-5 h-5 mr-1')} Pengaturan Admin
+            </button>
+            <button onclick="navigateTo('help')" class="nav-link text-white hover:text-secondary p-2 rounded-lg transition duration-150 ease-in-out flex items-center">
+                ${getIconSvg('icon-help', 'w-5 h-5 mr-1')} Bantuan
+            </button>
+        `;
+    }
+
+    /**
+     * Menavigasi antar tampilan utama.
+     * @param {string} view - 'subjects', 'chapters', 'material', 'about', 'admin', 'help'
+     * @param {string} [id=null] - ID subjek/materi jika diperlukan.
+     */
+    function navigateTo(view, id = null) {
+        currentView = view;
+        selectedSubject = null;
+        selectedChapter = null;
+        selectedMaterial = null;
+
+        switch (view) {
+            case 'subjects':
+                renderSubjectList();
+                break;
+            case 'chapters':
+                selectedSubject = courseData.find(s => s.id === id);
+                if (selectedSubject) renderChapterList();
+                break;
+            case 'material':
+                // Mengurai ID materi (contoh: ipas-1-1)
+                const parts = id.split('-');
+                const subjectId = parts[0];
+                const chapterIndex = parseInt(parts[1]) - 1;
+                const materialIndex = parseInt(parts[2]) - 1;
+
+                selectedSubject = courseData.find(s => s.id === subjectId);
+                if (selectedSubject) {
+                    selectedChapter = selectedSubject.chapters[chapterIndex];
+                    if (selectedChapter) {
+                        selectedMaterial = selectedChapter.materials[materialIndex];
+                        if (selectedMaterial) renderMaterialDetail();
+                    }
+                }
+                break;
+            case 'about':
+                renderStaticPage('Tentang Ruang Belajar', getAboutContent());
+                break;
+            case 'admin':
+                renderStaticPage('Pengaturan Admin', getAdminContent());
+                break;
+            case 'help':
+                renderStaticPage('Bantuan & FAQ', getHelpContent());
+                break;
+            default:
+                renderSubjectList();
+        }
+        window.scrollTo(0, 0); // Gulir ke atas setiap navigasi
+    }
+
+    // --- Tampilan Daftar Mata Pelajaran ---
+
+    function renderSubjectList() {
+        titleHeader.innerHTML = 'Daftar Mata Pelajaran Kelas 5';
+        let html = '<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">'; // Grid diperluas
+
+        courseData.forEach(subject => {
+            html += `
+                <div class="subject-card ${subject.color} text-white p-6 rounded-xl cursor-pointer shadow-lg flex flex-col justify-between" onclick="navigateTo('chapters', '${subject.id}')">
+                    <div class="flex items-center mb-4">
+                        <span class="text-4xl mr-4">${subject.icon}</span>
+                        <h3 class="text-2xl font-bold">${subject.title}</h3>
+                    </div>
+                    <p class="text-sm opacity-90">${subject.chapters.length} Bab Siap Dipelajari!</p>
+                    <button class="mt-4 w-full bg-white text-gray-800 font-semibold py-2 rounded-lg hover:bg-secondary hover:text-white transition duration-200">
+                        Mulai Belajar
+                    </button>
+                </div>
+            `;
+        });
+
+        html += '</div>';
+        contentDiv.innerHTML = html;
+    }
+
+    // --- Tampilan Daftar Bab ---
+
+    function renderChapterList() {
+        if (!selectedSubject) return navigateTo('subjects');
+
+        titleHeader.innerHTML = `
+            <button onclick="navigateTo('subjects')" class="text-primary hover:text-secondary mr-3 transition duration-150">${getIconSvg('icon-arrow-left', 'w-8 h-8')}</button>
+            Bab Mata Pelajaran: <span class="text-secondary">${selectedSubject.title}</span>
+        `;
+        let html = '<div class="bg-white rounded-xl shadow-lg divide-y divide-gray-100">';
+
+        selectedSubject.chapters.forEach((chapter, index) => {
+            // ID chapter yang unik diperlukan untuk detail
+            const chapterId = `${selectedSubject.id}-${index + 1}`;
+            
+            html += `
+                <div class="chapter-item p-5 flex justify-between items-center" onclick="showChapterDetails('${selectedSubject.id}', ${index})">
+                    <div class="flex items-center">
+                        <span class="text-xl font-bold text-primary mr-4">${index + 1}.</span>
+                        <h4 class="text-xl font-semibold text-gray-800">${chapter.title}</h4>
+                    </div>
+                    <span class="text-sm text-gray-500">${chapter.materials.length} Materi</span>
+                </div>
+                <div id="chapter-details-${chapterId}" class="hidden p-4 bg-gray-50 border-t border-gray-200">
+                    <!-- Detail materi akan dimuat di sini -->
+                </div>
+            `;
+        });
+
+        html += '</div>';
+        contentDiv.innerHTML = html;
+    }
+
+    /**
+     * Menampilkan detail materi di bawah bab yang diklik.
+     * @param {string} subjectId - ID Subjek.
+     * @param {number} chapterIndex - Indeks Bab dalam array.
+     */
+    function showChapterDetails(subjectId, chapterIndex) {
+        const chapter = courseData.find(s => s.id === subjectId).chapters[chapterIndex];
+        const chapterId = `${subjectId}-${chapterIndex + 1}`;
+        const detailDiv = document.getElementById(`chapter-details-${chapterId}`);
+        
+        if (!detailDiv) return; // Tambahkan pengaman
+
+        const isVisible = !detailDiv.classList.contains('hidden');
+
+        // Sembunyikan semua detail bab lain (di subjek yang sama)
+        document.querySelectorAll(`[id^="chapter-details-${subjectId}-"]`).forEach(div => {
+            if (div.id !== detailDiv.id) {
+                div.classList.add('hidden');
+            }
+        });
+
+        if (isVisible) {
+            detailDiv.classList.add('hidden');
+            return;
+        }
+
+        let materialHtml = '<ul class="list-disc ml-6 space-y-2">';
+        chapter.materials.forEach((material, matIndex) => {
+            // ID Materi: subjectId-chapterIndex+1-matIndex+1
+            const materialId = `${subjectId}-${chapterIndex + 1}-${matIndex + 1}`;
+            materialHtml += `
+                <li class="text-gray-700">
+                    <span class="font-medium mr-2 text-accent">[${material.type}]</span>
+                    <a href="#" onclick="event.preventDefault(); navigateTo('material', '${materialId}')" class="text-primary hover:underline font-medium">
+                        ${material.title}
+                    </a>
+                </li>
+            `;
+        });
+        materialHtml += '</ul>';
+
+        detailDiv.innerHTML = materialHtml;
+        detailDiv.classList.remove('hidden');
+    }
+
+    // --- Tampilan Detail Materi ---
+
+    function renderMaterialDetail() {
+        if (!selectedMaterial || !selectedChapter || !selectedSubject) return navigateTo('subjects');
+
+        titleHeader.innerHTML = `
+            <button onclick="navigateTo('chapters', '${selectedSubject.id}')" class="text-primary hover:text-secondary mr-3 transition duration-150">${getIconSvg('icon-arrow-left', 'w-8 h-8')}</button>
+            ${selectedChapter.title}: <span class="text-secondary">${selectedMaterial.title}</span>
+        `;
+
+        const html = `
+            <div class="bg-card-bg rounded-xl shadow-lg p-6 sm:p-8">
+                <div class="flex items-center mb-4 pb-4 border-b border-gray-200">
+                    <span class="text-3xl mr-4">${selectedSubject.icon}</span>
+                    <h2 class="text-2xl font-bold text-gray-800">${selectedMaterial.title}</h2>
+                    <span class="ml-auto text-sm font-semibold px-3 py-1 rounded-full bg-accent text-white">${selectedMaterial.type}</span>
+                </div>
+
+                <div class="material-content text-gray-700 leading-relaxed space-y-4">
+                    ${selectedMaterial.content}
+                </div>
+
+                <div class="mt-8 pt-4 border-t border-gray-200">
+                    <p class="text-lg font-semibold text-primary">Ayo Coba!</p>
+                    <button class="mt-2 bg-secondary text-white font-bold py-2 px-4 rounded-lg shadow-md hover:bg-orange-600 transition duration-200">
+                        Kerjakan Kuis Pendek
+                    </button>
+                    <button class="mt-2 ml-3 bg-gray-300 text-gray-800 font-bold py-2 px-4 rounded-lg shadow-md hover:bg-gray-400 transition duration-200" onclick="alertCustom('Fitur Catatan sedang dalam pengembangan!')">
+                        Buat Catatan
+                    </button>
+                </div>
+            </div>
+        `;
+        contentDiv.innerHTML = html;
+    }
+
+
+    // --- Tampilan Halaman Statis ('Tentang', 'Admin', 'Bantuan') ---
+
+    function getAboutContent() {
+        return `
+            <div class="bg-card-bg rounded-xl shadow-lg p-6 sm:p-8 space-y-4 text-gray-700">
+                <p class="text-xl font-semibold text-primary">Apa itu Ruang Belajar Kelas 5?</p>
+                <p>Ruang Belajar Kelas 5 adalah platform pembelajaran digital yang dirancang khusus untuk siswa Sekolah Dasar Kelas 5. Kami menyajikan materi pelajaran inti dengan format yang menarik, mudah dipahami, dan interaktif.</p>
+
+                <p class="text-xl font-semibold text-primary pt-4">Visi Kami</p>
+                <p>Menjadikan proses belajar menyenangkan dan dapat diakses kapan saja, di mana saja. Kami percaya bahwa setiap anak memiliki potensi hebat untuk meraih prestasi.</p>
+
+                <p class="text-xl font-semibold text-primary pt-4">Fitur Utama</p>
+                <ul class="list-disc ml-6 space-y-2">
+                    <li>Materi dengan berbagai format: Teks, Gambar, dan Simulasi Video.</li>
+                    <li>Tampilan ceria dan responsif, cocok untuk semua perangkat.</li>
+                    <li>Navigasi sederhana untuk fokus pada materi.</li>
+                </ul>
+            </div>
+        `;
+    }
+
+    function getAdminContent() {
+        return `
+            <div class="bg-card-bg rounded-xl shadow-lg p-6 sm:p-8 space-y-4 text-gray-700">
+                <p class="text-xl font-semibold text-red-600">Area Administrator</p>
+                <p>Halaman ini disimulasikan untuk kebutuhan administrasi (khusus Guru/Admin). Dalam aplikasi nyata, halaman ini akan memerlukan proses login dan otentikasi yang ketat.</p>
+
+                <div class="p-4 bg-gray-100 rounded-lg">
+                    <p class="font-bold">Simulasi Tugas Admin:</p>
+                    <ul class="list-disc ml-6 text-sm mt-2">
+                        <li>Mengunggah Materi Baru (Contoh: Menambah Bab Baru di MTK).</li>
+                        <li>Mengelola Akun Siswa (Contoh: Reset Kata Sandi).</li>
+                        <li>Melihat Laporan Progres Belajar Siswa.</li>
+                    </ul>
+                </div>
+
+                <button class="mt-4 bg-primary text-white font-bold py-2 px-4 rounded-lg shadow-md hover:bg-indigo-600 transition duration-200" onclick="alertCustom('Simulasi: Anda berhasil masuk ke panel editor konten!')">
+                    Simulasi: Masuk ke Editor Konten
+                </button>
+            </div>
+        `;
+    }
+
+    function getHelpContent() {
+        return `
+            <div class="bg-card-bg rounded-xl shadow-lg p-6 sm:p-8 space-y-4 text-gray-700">
+                <p class="text-xl font-semibold text-accent">Pusat Bantuan Ruang Belajar</p>
+                <p>Kami siap membantu Anda! Berikut adalah beberapa pertanyaan yang sering diajukan:</p>
+
+                <div class="space-y-3">
+                    <div class="border border-gray-200 p-3 rounded-lg">
+                        <p class="font-bold text-gray-800">Bagaimana cara memulai pelajaran?</p>
+                        <p class="text-sm mt-1">Cukup klik pada salah satu kartu Mata Pelajaran di halaman utama, lalu pilih Bab yang ingin dipelajari, dan klik materi yang tersedia.</p>
+                    </div>
+                    <div class="border border-gray-200 p-3 rounded-lg">
+                        <p class="font-bold text-gray-800">Apakah website ini bisa dibuka di HP?</p>
+                        <p class="text-sm mt-1">Ya, website ini dirancang agar responsif dan dapat diakses dengan nyaman melalui komputer, tablet, maupun ponsel.</p>
+                    </div>
+                </div>
+
+                <p class="pt-4 text-sm italic">Jika Anda memiliki pertanyaan lain, silakan hubungi Guru Anda (Admin)</p>
+            </div>
+        `;
+    }
+
+    /**
+     * Menampilkan halaman statis (Tentang, Admin, Bantuan).
+     * @param {string} title - Judul Halaman.
+     * @param {string} content - Konten HTML.
+     */
+    function renderStaticPage(title, content) {
+        titleHeader.innerHTML = title;
+        contentDiv.innerHTML = content;
+    }
+
+    // --- Custom Alert (Pengganti window.alert) ---
+
+    function alertCustom(message) {
+        const modalId = 'custom-alert-modal';
+        let modal = document.getElementById(modalId);
+
+        if (!modal) {
+            modal = document.createElement('div');
+            modal.id = modalId;
+            modal.className = 'fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden';
+            modal.innerHTML = `
+                <div class="bg-white p-6 rounded-lg shadow-2xl max-w-sm mx-4 w-full transform transition-all duration-300 scale-95" id="alert-box">
+                    <h4 class="text-xl font-bold text-primary mb-3">Pesan Notifikasi</h4>
+                    <p id="alert-message" class="text-gray-700 mb-4"></p>
+                    <button id="alert-close-btn" class="w-full bg-secondary text-white font-bold py-2 rounded-lg hover:bg-orange-600 transition duration-200">
+                        OK, Mengerti
+                    </button>
+                </div>
+            `;
+            document.body.appendChild(modal);
+
+            document.getElementById('alert-close-btn').onclick = () => {
+                modal.classList.add('hidden');
+            };
+        }
+
+        document.getElementById('alert-message').textContent = message;
+        modal.classList.remove('hidden');
+        document.getElementById('alert-box').classList.remove('scale-95');
+        document.getElementById('alert-box').classList.add('scale-100');
+    }
+
+    // Inisialisasi Aplikasi
+    window.onload = function() {
+        renderNavigation();
+        navigateTo('subjects'); // Mulai dari halaman daftar mata pelajaran
+    };
+
+</script>
+</body>
+</html>
